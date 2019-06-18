@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useContext } from 'react';
+
+// App contexts (states)
+import { DataContext } from './Store';
+
+// App services
+import getData from './services/airquality';
+
+// import axios from 'axios';
 import './App.css';
 
-function App() {
+// App components
+import SearchInput from './components/Search/Input';
+
+const App = () => {
+  const [, setData] = useContext(DataContext);
+
+  // Get the data from the API and update the context's state
+  useEffect(() => {
+    getData()
+      .then(locations => setData({ locations }))
+      .catch(error => console.error(error));
+  }, [setData]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header className='App-header'>
+        <SearchInput />
       </header>
     </div>
   );
-}
+};
 
 export default App;
