@@ -1,0 +1,29 @@
+.search {
+  margin-top: 20px;
+
+  &__input {
+    width: 280px;
+    height: 35px;
+    color: #000;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 2px solid #bebebe;
+
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #000;
+      opacity: 1; /* Firefox */
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #000;
+    }
+
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #000;
+    }
+  }
+}

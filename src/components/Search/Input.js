@@ -1,45 +1,54 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import Card from '../Location/Card';
 
 // App contexts (states)
-import { DataContext, SearchContext } from '../../Store';
+import { DataContext, SearchContext, SelectionContext } from '../../Store';
 
 const SearchInput = () => {
   const [data] = useContext(DataContext);
   const [search, setSearch] = useContext(SearchContext);
+  const [selection, setSelection] = useContext(SelectionContext);
+
+  // useEffect(() => {
+  //   console.log('useEffect', selection);
+  // });
 
   const onChange = event => {
-    let options = [];
+    let results = [];
     const { value } = event.target;
     const locations = data.locations.map(element => element.location);
 
     if (value.length > 0) {
       const regex = new RegExp(`^${value}`, 'i');
-      options = locations.sort().filter(v => regex.test(v));
+      results = locations.sort().filter(v => regex.test(v));
     }
     setSearch(() => ({
-      options,
+      ...search,
+      results,
       input: value
     }));
   };
 
-  const selectedOptions = value => {
-    setSearch({ input: value, options: [] });
+  const selectedResults = value => {
+    const picked = data.locations.find(element => element.location === value);
+
+    setSelection(() => ({ locations: [...selection.locations, picked] }));
+    setSearch(() => ({ ...search, input: value, results: [] }));
   };
 
-  const renderOptions = () => {
-    const { options } = search;
-    if (options.length === 0) {
+  const renderResults = () => {
+    const { results } = search;
+    if (results.length === 0) {
       return null;
     }
     return (
       <>
         <div style={{ background: 'white', width: '306px', maxHeight: '130px', overflow: 'scroll' }}>
-          {options.map((location, index) => (
+          {results.map((location, index) => (
             <div
               key={index}
-              onClick={() => selectedOptions(location)}
+              onClick={() => selectedResults(location)}
               style={{
                 height: '25px',
                 lineHeight: '25px',
@@ -61,14 +70,13 @@ const SearchInput = () => {
     <>
       <div className='search'>
         <input
-          type='text'
+          type='search'
           placeholder='Enter city name'
-          className='search-box'
+          className='search__input'
           value={search.input}
           onChange={onChange}
-          style={{ width: '300px' }}
         />
-        {renderOptions()}
+        {renderResults()}
       </div>
       <br />
       <Card />

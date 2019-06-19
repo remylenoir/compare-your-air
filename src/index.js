@@ -8,7 +8,7 @@ import App from './App';
 import Store from './Store';
 
 // App style
-import './index.css';
+import './stylesheets/main.scss';
 
 // App services
 import * as serviceWorker from './services/serviceWorker';
