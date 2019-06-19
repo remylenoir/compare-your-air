@@ -17,7 +17,7 @@ const App = () => {
 
   // Get the data from the API and update the context's state
   useEffect(() => {
-    getData()
+    getData('GB')
       .then(locations => setData({ locations }))
       .catch(error => console.error(error));
   }, [setData]);
