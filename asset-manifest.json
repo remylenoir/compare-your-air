@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/compare-your-air/static/css/main.c0de2fc9.chunk.css",
+    "main.js": "/compare-your-air/static/js/main.8815f698.chunk.js",
+    "main.js.map": "/compare-your-air/static/js/main.8815f698.chunk.js.map",
+    "runtime~main.js": "/compare-your-air/static/js/runtime~main.310a471f.js",
+    "runtime~main.js.map": "/compare-your-air/static/js/runtime~main.310a471f.js.map",
+    "static/js/2.4ef41586.chunk.js": "/compare-your-air/static/js/2.4ef41586.chunk.js",
+    "static/js/2.4ef41586.chunk.js.map": "/compare-your-air/static/js/2.4ef41586.chunk.js.map",
+    "index.html": "/compare-your-air/index.html",
+    "precache-manifest.e5ded1f6ff38a0b9a842da18813c2702.js": "/compare-your-air/precache-manifest.e5ded1f6ff38a0b9a842da18813c2702.js",
+    "service-worker.js": "/compare-your-air/service-worker.js",
+    "static/css/main.c0de2fc9.chunk.css.map": "/compare-your-air/static/css/main.c0de2fc9.chunk.css.map",
+    "static/media/main.scss": "/compare-your-air/static/media/search-icon.d17f17c9.svg"
+  }
+}
