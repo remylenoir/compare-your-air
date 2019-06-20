@@ -42,14 +42,27 @@ The application is using React hooks:
 The application states are set in the `./Store.js`  , using the React Context API. Thus you can access to the states from anywhere in your application without the hassle to pass down the props/lift up the states in the components.
 
 ```javascript
+// index.js
+import Store from './Store';
+
+<Store>
+	<App />
+</Store>
+```
+
+```javascript
 // Store.js
 export const DataContext = createContext();
 
-const [data, setData] = useState({
-	locations: []
+const Store = ({ children }) => {
+  const [data, setData] = useState({
+    locations: []
+  });
 });
 
-<DataContext.Provider value={[data, setData]}>{children}</DataContext.Provider>
+return (
+  <DataContext.Provider value={[data, setData]}>{children}</DataContext.Provider>
+);
 ```
 
 > More information: [Context API reference](https://reactjs.org/docs/context.html)
@@ -106,8 +119,7 @@ useEffect(() => {
 
 #### Add a parameter
 
-You can add a new parameter via the Axios `GET` request located at `./src/services/airquality.js`.
-
+You can add a new parameter via the Axios `GET` request located at `./src/services/airquality.js`.  
 Then you can pass the value in the `getData()` function located at `./src/App.js` (see above) .
 
 > More information: [available feeds and parameters](https://docs.openaq.org/)
