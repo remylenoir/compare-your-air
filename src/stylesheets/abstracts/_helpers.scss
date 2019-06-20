@@ -2,9 +2,6 @@
 .d-flex {
   display: flex;
 }
-.d-inline-block {
-  display: inline-block;
-}
 
 // Positions
 .position-absolute {
@@ -12,38 +9,6 @@
 }
 .position-relative {
   position: relative;
-}
-
-// Sizes
-// Width in %
-.w {
-  &-25 {
-    width: 25%;
-  }
-  &-50 {
-    width: 50%;
-  }
-  &-75 {
-    width: 75%;
-  }
-  &-100 {
-    width: 100%;
-  }
-}
-// Width in vw
-.vw {
-  &-25 {
-    width: 25vw;
-  }
-  &-50 {
-    width: 50vw;
-  }
-  &-75 {
-    width: 75vw;
-  }
-  &-100 {
-    width: 100vw;
-  }
 }
 
 // Margins
@@ -67,12 +32,6 @@
   &-20 {
     padding: 20px;
   }
-  &x-20 {
-    padding: 0 20px;
-  }
-  &y-20 {
-    padding: 20px 0;
-  }
 }
 
 // Text properties
@@ -80,14 +39,10 @@
   &-center {
     text-align: center;
   }
-  &-right {
-    text-align: right;
-  }
   &-white {
     color: #fff;
   }
-}
-
-.radius-50 {
-  border-radius: 50%;
+  &-uppercase {
+    text-transform: uppercase;
+  }
 }

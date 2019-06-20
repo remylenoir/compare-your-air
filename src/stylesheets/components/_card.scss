@@ -1,0 +1,48 @@
+.cards {
+  z-index: 0;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: calc(#{$search-width} * 2 + 80px);
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+}
+
+.card {
+  background-color: #fff;
+  border-radius: $radius;
+  margin: 20px;
+  padding: 15px;
+  width: $search-width;
+  max-width: $search-width;
+  box-shadow: $box-shadow;
+
+  &__close {
+    top: 4px;
+    right: 10px;
+    font-size: 1.8rem;
+    text-align: right;
+    transform: scaleY(0.83);
+    cursor: pointer;
+  }
+
+  &__time {
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  &__location {
+    color: $primary-color;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  &__measurements {
+    font-weight: 600;
+  }
+
+  span.parameter-separator:last-child {
+    display: none;
+  }
+}

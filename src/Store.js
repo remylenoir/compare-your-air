@@ -7,8 +7,8 @@ export const SelectionContext = createContext();
 
 const Store = ({ children }) => {
   const [search, setSearch] = useState({
-    results: [],
-    input: ''
+    input: '',
+    results: []
   });
 
   const [selection, setSelection] = useState({

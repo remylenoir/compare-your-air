@@ -1,14 +1,28 @@
 .search {
+  z-index: 1;
   margin-top: 20px;
 
+  &__input,
+  &__results {
+    border-radius: $radius;
+    box-shadow: $box-shadow;
+  }
+  &__input,
+  &__results,
+  &__result {
+    width: $search-width;
+    max-width: $search-width;
+  }
+
   &__input {
-    width: 280px;
+    z-index: 1;
     height: 35px;
     color: #000;
     font-size: 1rem;
     padding: 5px 10px;
-    border-radius: 5px;
+    margin-bottom: 40px;
     border: 2px solid #bebebe;
+    box-shadow: $box-shadow;
 
     &::placeholder {
       /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -24,6 +38,27 @@
     &::-ms-input-placeholder {
       /* Microsoft Edge */
       color: #000;
+    }
+  }
+  &__results {
+    z-index: 0;
+    top: 20px;
+    padding-top: 15px;
+    max-height: 190px;
+    background: #fff;
+    overflow-y: scroll;
+  }
+  &__result {
+    color: #000;
+    height: 35px;
+    line-height: 35px;
+    font-size: 0.9rem;
+    padding: 0 10px;
+    cursor: pointer;
+    // border-bottom: 1px solid #d9d9d9;
+
+    &:hover {
+      background-color: #f2f2f2;
     }
   }
 }

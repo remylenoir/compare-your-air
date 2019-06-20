@@ -1,58 +1,52 @@
 import React, { useContext } from 'react';
 
 // App contexts (states)
-import { DataContext, SelectionContext } from '../../Store';
+import { SelectionContext } from '../../Store';
 
-// Externak packages
+// External packages
 import moment from 'moment';
 
 const LocationCard = () => {
-  // const [data] = useContext(DataContext);
   const [selection, setSelection] = useContext(SelectionContext);
   const { locations } = selection;
 
-  // const removeSelection = value => {
-  //   const picked = data.locations.find(element => element.location === value);
-
-  //   const activeSelection = locations.filter(element => element !== picked);
-  //   console.log('activeSelection', activeSelection);
-  //   setSelection(() => ({ locations: [...locations, activeSelection] }));
-  // };
+  const closeCard = value => {
+    const selected = locations.find(element => element.location === value);
+    const filteredSelection = locations.filter(element => element !== selected);
+    setSelection({ locations: filteredSelection });
+  };
 
   return (
-    <>
+    <div className='cards d-flex'>
       {locations.length > 0 &&
-        locations.map((location, index) => {
+        locations.map((element, index) => {
           return (
-            <div
-              key={index}
-              style={{
-                background: 'white',
-                color: 'red',
-                width: '300px',
-                padding: '30px',
-                margin: '30px'
-              }}
-            >
-              <p>{moment(location && location.measurements[0].lastUpdated).fromNow()}</p>
-              <p>{location && location.location}</p>
-              <p>in {location && location.city}, United Kingdom</p>
-              <p>
+            <div key={index} className='card position-relative'>
+              <div className='card__close position-absolute' onClick={() => closeCard(element.location)}>
+                X
+              </div>
+
+              <p className='card__time text-uppercase'>
+                Updated {moment(element && element.measurements[0].lastUpdated).fromNow()}
+              </p>
+              <p className='card__location'>{element && element.location}</p>
+              <p className='card__city'>in {element && element.city}, United Kingdom</p>
+              <p className='card__measurements'>
                 Values:{' '}
-                {location &&
-                  location.measurements.map((element, index) => {
+                {element &&
+                  element.measurements.map((element, index) => {
                     return (
                       <span key={index}>
-                        {element.parameter}: {element.value},
+                        {element.parameter}: {element.value}
+                        <span className='parameter-separator'>,</span>{' '}
                       </span>
                     );
                   })}
               </p>
-              {/* <div onClick={() => removeSelection(location.location)}>remove</div> */}
             </div>
           );
         })}
-    </>
+    </div>
   );
 };
 

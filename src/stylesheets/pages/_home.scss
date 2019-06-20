@@ -1,8 +1,10 @@
 .main-container {
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
-  background: #3f7aad;
-  background: linear-gradient(100deg, #7935af 0%, #3f7aad 100%);
+
+  @include media-breakpoint-up(sm) {
+    height: 100vh;
+  }
 }

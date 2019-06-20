@@ -1,7 +1,16 @@
+* {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 h1 {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
 }
 
 p {
   font-size: 1rem;
+  line-height: 1.2;
+  margin: 10px 0;
 }

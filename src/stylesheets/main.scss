@@ -1,4 +1,5 @@
 // Abstracts: global variables, helpers, mixins, etc.
+@import './abstracts/mixins';
 @import './abstracts/helpers';
 @import './abstracts/variables';
 
@@ -7,14 +8,8 @@
 @import './base/typography';
 
 // Components: styling for each components
+@import './components/card';
 @import './components/search';
-
-// Layout: styling for layout components (nav, header, footer, etc)
-// @import './layout/form';
-// @import './layout/sidebar';
 
 // Pages: page-specific styling
 @import './pages/home';
-
-// Vendors: 3rd-party styles
-// @import './vendors/mapbox';

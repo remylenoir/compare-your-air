@@ -1,6 +1,4 @@
-import React, { useContext, useEffect } from 'react';
-
-import Card from '../Location/Card';
+import React, { useContext } from 'react';
 
 // App contexts (states)
 import { DataContext, SearchContext, SelectionContext } from '../../Store';
@@ -10,76 +8,72 @@ const SearchInput = () => {
   const [search, setSearch] = useContext(SearchContext);
   const [selection, setSelection] = useContext(SelectionContext);
 
-  // useEffect(() => {
-  //   console.log('useEffect', selection);
-  // });
-
-  const onChange = event => {
+  const handleChange = event => {
     let results = [];
     const { value } = event.target;
     const locations = data.locations.map(element => element.location);
 
     if (value.length > 0) {
-      const regex = new RegExp(`^${value}`, 'i');
-      results = locations.sort().filter(v => regex.test(v));
+      results = locations.filter(element =>
+        element
+          .toLowerCase()
+          .slice(0, value.length)
+          .includes(value.toLowerCase())
+      );
     }
-    setSearch(() => ({
-      ...search,
+
+    setSearch({
       results,
       input: value
-    }));
+    });
   };
 
-  const selectedResults = value => {
-    const picked = data.locations.find(element => element.location === value);
+  const openCard = value => {
+    const selected = data.locations.find(element => element.location === value);
+    const checkSelection = selection.locations.find(element => element.location === value);
 
-    setSelection(() => ({ locations: [...selection.locations, picked] }));
-    setSearch(() => ({ ...search, input: value, results: [] }));
+    if (selected === checkSelection) {
+      setSearch({ ...search, input: 'Already selected!' });
+
+      setTimeout(() => {
+        setSearch({ ...search, input: '' });
+      }, 1500);
+
+      return null;
+    }
+
+    setSelection({ locations: [...selection.locations, selected] });
+    setSearch({ input: '', results: [] });
   };
 
   const renderResults = () => {
     const { results } = search;
-    if (results.length === 0) {
-      return null;
-    }
-    return (
-      <>
-        <div style={{ background: 'white', width: '306px', maxHeight: '130px', overflow: 'scroll' }}>
+
+    if (results.length > 0) {
+      return (
+        <div className='search__results position-absolute'>
           {results.map((location, index) => (
-            <div
-              key={index}
-              onClick={() => selectedResults(location)}
-              style={{
-                height: '25px',
-                lineHeight: '25px',
-                borderBottom: '1px solid #d9d9d9',
-                color: '#777',
-                fontSize: '12px',
-                cursor: 'pointer'
-              }}
-            >
+            <div key={index} className='search__result' onClick={() => openCard(location)}>
               {location}
             </div>
           ))}
         </div>
-      </>
-    );
+      );
+    }
   };
 
   return (
     <>
-      <div className='search'>
+      <div className='search position-relative'>
         <input
           type='search'
-          placeholder='Enter city name'
-          className='search__input'
+          placeholder='Enter city name...'
+          className='search__input position-relative'
           value={search.input}
-          onChange={onChange}
+          onChange={handleChange}
         />
         {renderResults()}
       </div>
-      <br />
-      <Card />
     </>
   );
 };
