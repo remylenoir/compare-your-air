@@ -36,9 +36,9 @@ const LocationCard = () => {
                 {element &&
                   element.measurements.map((element, index) => {
                     return (
-                      <span key={index}>
+                      <span className='parameter' key={index}>
                         {element.parameter}: {element.value}
-                        <span className='parameter-separator'>,</span>{' '}
+                        <span className='parameter__separator'>,</span>{' '}
                       </span>
                     );
                   })}

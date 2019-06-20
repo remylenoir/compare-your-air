@@ -20,9 +20,14 @@
     color: #000;
     font-size: 1rem;
     padding: 5px 10px;
+    padding-left: 50px;
     margin-bottom: 40px;
     border: 2px solid #bebebe;
     box-shadow: $box-shadow;
+    background-image: url('../assets/search-icon.svg');
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 10px center;
 
     &::placeholder {
       /* Chrome, Firefox, Opera, Safari 10.1+ */

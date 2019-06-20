@@ -20,10 +20,10 @@
 
   &__close {
     top: 4px;
-    right: 10px;
+    right: 15px;
     font-size: 1.8rem;
     text-align: right;
-    transform: scaleY(0.83);
+    transform: scaleY(0.7);
     cursor: pointer;
   }
 
@@ -40,9 +40,11 @@
 
   &__measurements {
     font-weight: 600;
-  }
 
-  span.parameter-separator:last-child {
-    display: none;
+    .parameter {
+      &:last-child .parameter__separator {
+        display: none;
+      }
+    }
   }
 }
